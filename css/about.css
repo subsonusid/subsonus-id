@@ -1,0 +1,215 @@
+/* ============================================
+   SUBSONUS — ABOUT PAGE STYLES
+   ============================================ */
+
+/* ── ABOUT WRAP ── */
+.about-wrap {
+  border-bottom: 1px solid var(--grey-mid);
+}
+
+/* ── STATEMENT BLOCKS ── */
+.about-statement {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-bottom: 1px solid var(--grey-mid);
+  padding: 3.5rem 3rem;
+  gap: 2rem;
+  transition: background 0.3s;
+}
+
+.about-statement:hover {
+  background: var(--grey);
+}
+
+.about-statement:last-child {
+  border-bottom: none;
+}
+
+.statement-num {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  padding-top: 0.2rem;
+}
+
+.statement-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.statement-tag {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: var(--grey-lt);
+  letter-spacing: 0.25em;
+}
+
+.statement-text {
+  font-family: var(--font-ui);
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: var(--white);
+  line-height: 1.8;
+  max-width: 680px;
+  font-weight: 400;
+}
+
+/* ── ARCHIVE LIST ── */
+.archive-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.archive-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.archive-icon {
+  font-size: 1.2rem;
+  color: var(--red);
+  margin-top: 0.1rem;
+  flex-shrink: 0;
+}
+
+.archive-item strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.archive-item a strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+  display: block;
+  margin-bottom: 0.3rem;
+  transition: color 0.2s, letter-spacing 0.2s;  /* ← tambahin */
+}
+
+.archive-item a:hover strong {
+  color: var(--red);
+  letter-spacing: 0.2em;  /* ← tambahin */
+}
+
+.archive-item p {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  color: var(--grey-lt);
+  line-height: 1.8;
+}
+
+/* ── CONTACT SECTION ── */
+.contact-wrap {
+  border-bottom: 1px solid var(--grey-mid);
+}
+
+.contact-header {
+  padding: 3rem 3rem 1.5rem;
+  border-bottom: 1px solid var(--grey-mid);
+  display: flex;
+  align-items: baseline;
+  gap: 2rem;
+}
+
+.contact-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  color: var(--white);
+  letter-spacing: 0.05em;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: none;
+}
+
+.contact-item {
+  padding: 2.5rem 3rem;
+  border-right: 1px solid var(--grey-mid);
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: background 0.2s;
+}
+
+.contact-item:last-child {
+  border-right: none;
+}
+
+.contact-item:hover {
+  background: var(--grey);
+}
+
+.contact-label {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  color: var(--grey-lt);
+  letter-spacing: 0.25em;
+}
+
+.contact-link {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--red);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s, letter-spacing 0.2s;
+  display: flex;          /* ← tambahin */
+  align-items: center;    /* ← tambahin */
+  gap: 0.5rem; 
+}
+.contact-link i {
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.contact-link:hover {
+  color: var(--white);
+  letter-spacing: 0.1em;
+}
+
+.contact-text {
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--white);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .about-statement {
+    grid-template-columns: 40px 1fr;
+    padding: 2.5rem 1.5rem;
+    gap: 1rem;
+  }
+
+  .contact-header { padding: 2rem 1.5rem 1rem; }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-item {
+    padding: 1.8rem 1.5rem;
+    border-bottom: 1px solid var(--grey-mid);
+  }
+
+  .contact-item:nth-child(2n) { border-right: none; }
+}
+
+@media (max-width: 600px) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .contact-item { border-right: none; }
+  .archive-item { flex-direction: column; gap: 0.5rem; }
+}

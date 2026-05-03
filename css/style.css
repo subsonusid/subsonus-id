@@ -1,0 +1,309 @@
+/* ============================================
+   SUBSONUS — GLOBAL STYLES
+   Nav, Footer, Base, Page Header, Filter Bar
+   ============================================ */
+
+/* ── VARIABLES ── */
+:root {
+  --black:    #0a0a0a;
+  --white:    #f0ece3;
+  --cream:    #d9d3c5;
+  --red:      #c8301a;
+  --red-dim:  #8a1f0f;
+  --grey:     #1e1e1e;
+  --grey-mid: #2f2f2f;
+  --grey-lt:  #888070;
+  --accent:   #e8b84b;
+
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body:    'Space Mono', monospace;
+  --font-ui:      'Syne', sans-serif;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+a { color: inherit; text-decoration: none; }
+
+/* ── BASE ── */
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  cursor: default;
+  padding-top: 70px;
+}
+
+/* ── PAGE TRANSITION ── */
+body {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── NOISE OVERLAY ── */
+/* FIX: ganti SVG noise (bikin glitch di Chrome/mobile) pakai pure CSS */
+.noise {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(255,255,255,0.015) 2px,
+      rgba(255,255,255,0.015) 4px
+    );
+}
+
+/* ── NAV ── */
+/* FIX: hapus will-change & transform yang bikin glitch, tambah backdrop-filter */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 3rem;
+  background: rgba(10,10,10,0.97);
+  border-bottom: 1px solid rgba(240,236,227,0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  letter-spacing: 0.12em;
+  color: var(--white);
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.nav-links a {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--grey-lt);
+  transition: color 0.2s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--red);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active { color: var(--white); }
+
+.nav-links a:hover::after,
+.nav-links a.active::after { width: 100%; }
+
+.nav-tag {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--grey-lt);
+  letter-spacing: 0.15em;
+}
+
+/* ── FOOTER ── */
+.footer {
+  padding: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  border-top: 1px solid var(--grey-mid);
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: 0.1em;
+  color: var(--white);
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--grey-lt);
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--white); }
+
+.footer-copy {
+  font-size: 0.65rem;
+  color: var(--grey-lt);
+  letter-spacing: 0.1em;
+}
+
+/* ── PAGE HEADER (shared across inner pages) ── */
+.page-header {
+  padding: 10rem 3rem 4rem;
+  border-bottom: 1px solid var(--grey-mid);
+  position: relative;
+  overflow: hidden;
+}
+
+.page-header-bg {
+  position: absolute;
+  right: -0.05em;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 18vw, 22rem);
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(240,236,227,0.03);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+.page-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--red);
+  letter-spacing: 0.2em;
+  margin-bottom: 1rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+/* ── FILTER BAR (shared across inner pages) ── */
+.filter-bar {
+  padding: 1.5rem 3rem;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 1px solid var(--grey-mid);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filter-label {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: var(--grey-lt);
+  letter-spacing: 0.15em;
+  margin-right: 0.5rem;
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid var(--grey-mid);
+  color: var(--grey-lt);
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  padding: 0.4rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  border-color: var(--red);
+  color: var(--white);
+  background: rgba(200,48,26,0.1);
+}
+
+/* ── MAIN CONTENT WRAPPER ── */
+.main-grid { padding: 3rem; }
+
+/* ── GLOBAL RESPONSIVE ── */
+@media (max-width: 900px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-tag { display: none; }
+  .footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  .page-header { padding: 7rem 1.5rem 3rem; }
+  .filter-bar { padding: 1.2rem 1.5rem; }
+  .main-grid { padding: 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { gap: 1.2rem; }
+}
+
+/* ── HAMBURGER ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  transition: all 0.3s;
+}
+
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+@media (max-width: 768px) {
+  .hamburger { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: rgba(10,10,10,0.97);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+    border-bottom: 1px solid var(--grey-mid);
+  }
+
+  .nav-links.open { display: flex; }
+}
+
+html, body {
+  height: auto;
+  overflow-x: hidden;
+}
+
+section {
+  min-height: auto;
+}
